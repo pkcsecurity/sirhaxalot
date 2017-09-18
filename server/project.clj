@@ -9,4 +9,5 @@
   :ring {:handler sirhaxalot.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
+                        [cheshire "LATEST"]
                         [ring/ring-mock "0.3.0"]]}})
