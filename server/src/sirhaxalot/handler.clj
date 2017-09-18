@@ -10,7 +10,7 @@
 (defroutes app-routes
   (GET "/" [] "Hello World")
   (POST "/echo" req (echo-handler req))
-  (POST "/logn" req (login/handler req))
+  (POST "/login" req (login/handler req))
   (route/not-found "Not Found"))
 
 (def app
