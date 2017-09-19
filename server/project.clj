@@ -7,6 +7,7 @@
                  [compojure "1.5.1"]
                  [ring/ring-defaults "LATEST"]
                  [ring/ring-core "LATEST"]
+                 [ring-cors "LATEST"]
                  [ring/ring-jetty-adapter "LATEST"]
                  [ring/ring-defaults "0.2.1"]]
   :plugins [[lein-ring "0.9.7"]]
