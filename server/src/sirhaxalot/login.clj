@@ -1,8 +1,11 @@
 (ns sirhaxalot.login
   (:require [cheshire.core :as cheshire]
             [sirhaxalot.scraper :as s]
+            [clojure.tools.logging :as log]
             [sirhaxalot.utils :as utils]))
 
 (defn handler [req]
-  (let [{:keys [body url username password] :as req} req]
-    (s/scrape url)))
+  (log/info req)
+  (let [{:keys [url username query password]} (utils/json->clj (slurp (:body req)))]
+    (s/scrape {:url url
+               :query query})))
